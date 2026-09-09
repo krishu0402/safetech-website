@@ -19,10 +19,10 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/animations";
+import { ScenarioPreview } from "@/components/ScenarioPreview";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
 
   // Illustrative calculator inputs.
   // This is a planning aid, not a guaranteed financial forecast.
@@ -77,42 +77,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* Prototype demo modal */}
-      {showVideo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-industrial-black/95 backdrop-blur-md">
-          <div className="w-full max-w-5xl aspect-video bg-black rounded-2xl relative shadow-2xl border border-white/10 flex items-center justify-center overflow-hidden">
-            <button
-              type="button"
-              onClick={() => setShowVideo(false)}
-              aria-label="Close SafeWork preview"
-              className="absolute top-4 right-4 text-white hover:text-brand-cyan transition-colors z-10 bg-black/50 p-2 rounded-full"
-            >
-              <X size={24} />
-            </button>
-
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-industrial-gray/20 p-6 text-center">
-              <div className="w-20 h-20 bg-brand-cyan text-white rounded-full flex items-center justify-center mb-6">
-                <PlayCircle size={40} className="ml-1" />
-              </div>
-
-              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 border border-white/20 text-brand-yellow text-xs font-bold uppercase tracking-widest mb-4">
-                Prototype Preview
-              </span>
-
-              <h3 className="text-2xl font-bold font-heading text-white tracking-widest uppercase">
-                SafeWork Overview
-              </h3>
-
-              <p className="text-gray-400 mt-3 max-w-xl">
-                This section demonstrates the intended interaction flow of the
-                SafeWork training experience. Production video content can be
-                added in a future development stage.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Hero Section */}
       <section
         className="relative min-h-[90vh] flex flex-col justify-center bg-cover bg-center"
@@ -161,17 +125,16 @@ export default function Home() {
                   />
                 </Link>
 
-                <button
-                  type="button"
-                  onClick={() => setShowVideo(true)}
+                <a
+                  href="#scenario-preview"
                   className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-white/10 text-white font-bold rounded-full hover:bg-white/20 transition-all border border-white/30 uppercase tracking-wider text-sm group"
                 >
                   <PlayCircle
                     size={20}
                     className="text-brand-yellow group-hover:scale-110 transition-transform"
                   />
-                  Preview Prototype
-                </button>
+                  Try It Yourself
+                </a>
               </div>
             </FadeIn>
           </div>
@@ -275,6 +238,34 @@ export default function Home() {
               </StaggerItem>
             </StaggerContainer>
           </div>
+        </div>
+      </section>
+
+      {/* Real interactive scenario — not a mock-up */}
+      <section id="scenario-preview" className="py-24 bg-white scroll-mt-20">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <FadeIn direction="up">
+            <div className="text-center mb-12">
+              <span className="text-sm font-bold text-brand-cyan uppercase tracking-widest">
+                Working prototype
+              </span>
+              <h2 className="text-3xl md:text-5xl font-heading font-bold text-industrial-black mt-3 mb-5">
+                This Part Actually Works
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Below is a real, functioning piece of the SafeWork training
+                loop — not a screenshot or a video placeholder. Tap the
+                loading bay to find three hazards and see the feedback the
+                full system would give a trainee.
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.15}>
+            <div className="max-w-xl mx-auto">
+              <ScenarioPreview />
+            </div>
+          </FadeIn>
         </div>
       </section>
 
